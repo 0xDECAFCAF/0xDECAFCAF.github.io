@@ -186,6 +186,35 @@ function ui_init(window, document) {
         } catch (e) { /* ignore 404 */ }
     }
 
+    function loaded_map(req, text) {
+        if (req.readyState === XMLHttpRequest.DONE && 
+           (req.status === 0 || (req.status >= 200 && req.status < 400))) {
+            if (text === "") {
+                // empty map - done
+            } else {
+                console.log("text: " + text);
+                const array = text.split('\n');
+                for (var i = 0; i < linesArray.length; i++) {
+                    console.log("[" + (i + 1) + "]: " + array[i]);
+                }
+            }
+        }
+        ui_init(this, this.document);
+    }
+
+    function load_map() {
+        let req = new XMLHttpRequest();
+        req.onerror = function() { };
+        req.onloadend = function() { 
+            loaded_map(req, req.responseText);
+        };
+        try { 
+            req.open("GET", "data/md.map");
+            req.send();
+        } catch (e) { /* ignore 404 */ }
+    }
+
+    load_map();
     load_page(1, "txt");
     
 }(this, this.document));
