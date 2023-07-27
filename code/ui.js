@@ -174,34 +174,35 @@ function ui_init(window, document) {
         ui_init(this, this.document);
     }
 
-    function load_page(i, ext) {
-        let req = new XMLHttpRequest();
-        req.onerror = function() { };
-        req.onloadend = function() { 
-            loaded(req, i, ext, req.responseText);
-        };
-        try { 
-            req.open("GET", "data/page" + i + "." + ext);
-            req.send();
-        } catch (e) { /* ignore 404 */ }
-    }
-
     function page_has_been_loaded(array, i, req, text) {
         if (req.readyState === XMLHttpRequest.DONE && 
             (req.status === 0 || (req.status >= 200 && req.status < 400))) {
             if (text === "") {
                 // page is empty - do nothing
             } else {
-                add_label(i, "page" + i);
-                add_md(i, text);
+                let k = array.length - 1 - i;
+                console.log("[" + k + "]: " + "page " + i + " loaded");
+                add_label(k, "page" + k);
+                add_md(k, text);
             }
         }
-        var count = 0;
-        array[i] = "";
-        for (var i = 0; i < array.length; i++) {
-            if (array[i] === "") { count++; }
+        if (i > 0) {
+            load_page(array, i - 1);
+        } else { 
+            ui_init(this, this.document); 
         }
-        if (count == array.length) { ui_init(this, this.document); }
+    }
+
+    function load_page(array, i) {
+        let req = new XMLHttpRequest();
+        req.onerror = function() { };
+        req.onloadend = function() { 
+            page_has_been_loaded(array, i, req, req.responseText);
+        };
+        try { 
+            req.open("GET", array[i]);
+            req.send();
+        } catch (e) { /* ignore 404 */ }
     }
 
     function map_has_been_loaded(req, text) {
@@ -214,16 +215,8 @@ function ui_init(window, document) {
                 const array = text.split('\n');
                 for (var i = array.length - 1; i >= 0; i--) {
                     console.log("[" + (i + 1) + "]: " + array[i]);
-                    let req = new XMLHttpRequest();
-                    req.onerror = function() { };
-                    req.onloadend = function() { 
-                        page_has_been_loaded(array, i, req, req.responseText);
-                    };
-                    try { 
-                        req.open("GET", array[i]);
-                        req.send();
-                    } catch (e) { /* ignore 404 */ }
                 }
+                load_page(array, array.length - 1);
             }
         }
         ui_init(this, this.document);
@@ -242,7 +235,5 @@ function ui_init(window, document) {
     }
 
     load_map();
-//  load_page(1, "txt");
     
 }(this, this.document));
-
