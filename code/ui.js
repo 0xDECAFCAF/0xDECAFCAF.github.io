@@ -186,7 +186,7 @@ function ui_init(window, document) {
         } catch (e) { /* ignore 404 */ }
     }
 
-    function page_has_been_loaded(i, req, text) {
+    function page_has_been_loaded(array, i, req, text) {
         if (req.readyState === XMLHttpRequest.DONE && 
             (req.status === 0 || (req.status >= 200 && req.status < 400))) {
             if (text === "") {
@@ -196,7 +196,12 @@ function ui_init(window, document) {
                 add_md(i, text);
             }
         }
-        if (i == 0 ) { ui_init(this, this.document); }
+        var count = 0;
+        array[i] = "";
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === "") { count++; }
+        }
+        if (count == array.length) { ui_init(this, this.document); }
     }
 
     function map_has_been_loaded(req, text) {
@@ -213,7 +218,7 @@ function ui_init(window, document) {
                 let req = new XMLHttpRequest();
                 req.onerror = function() { };
                 req.onloadend = function() { 
-                    loaded_map(req, req.responseText);
+                    page_has_been_loaded(array, i, req, req.responseText);
                 };
                 try { 
                     req.open("GET", array[i]);
