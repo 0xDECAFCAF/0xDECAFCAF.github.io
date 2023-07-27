@@ -186,7 +186,20 @@ function ui_init(window, document) {
         } catch (e) { /* ignore 404 */ }
     }
 
-    function loaded_map(req, text) {
+    function page_has_been_loaded(i, req, text) {
+        if (req.readyState === XMLHttpRequest.DONE && 
+            (req.status === 0 || (req.status >= 200 && req.status < 400))) {
+            if (text === "") {
+                // page is empty - do nothing
+            } else {
+                add_label(i, "page" + i);
+                add_md(i, text);
+            }
+        }
+        if (i == 0 ) { ui_init(this, this.document); }
+    }
+
+    function map_has_been_loaded(req, text) {
         if (req.readyState === XMLHttpRequest.DONE && 
            (req.status === 0 || (req.status >= 200 && req.status < 400))) {
             if (text === "") {
@@ -194,9 +207,18 @@ function ui_init(window, document) {
             } else {
                 console.log("text: " + text);
                 const array = text.split('\n');
-                for (var i = 0; i < linesArray.length; i++) {
+                for (var i = array.length - 1; i >= 0; i--) {
                     console.log("[" + (i + 1) + "]: " + array[i]);
                 }
+                let req = new XMLHttpRequest();
+                req.onerror = function() { };
+                req.onloadend = function() { 
+                    loaded_map(req, req.responseText);
+                };
+                try { 
+                    req.open("GET", array[i]);
+                    req.send();
+                } catch (e) { /* ignore 404 */ }
             }
         }
         ui_init(this, this.document);
@@ -206,7 +228,7 @@ function ui_init(window, document) {
         let req = new XMLHttpRequest();
         req.onerror = function() { };
         req.onloadend = function() { 
-            loaded_map(req, req.responseText);
+            map_has_been_loaded(req, req.responseText);
         };
         try { 
             req.open("GET", "data/md.map");
@@ -215,7 +237,7 @@ function ui_init(window, document) {
     }
 
     load_map();
-    load_page(1, "txt");
+//  load_page(1, "txt");
     
 }(this, this.document));
 
