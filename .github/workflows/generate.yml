@@ -1,0 +1,45 @@
+name: generate
+
+on:
+  push:
+  release:
+    types: [published]
+  workflow_dispatch:
+permissions:
+  contents: write
+
+jobs:
+  graph:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout.
+        uses: actions/checkout@v3
+        env:
+          GIT_TRACE: 0
+          GIT_CURL_VERBOSE: 0
+
+      - name: generate md.map
+        run: |
+            rm    data/md.map
+            ls -1 data/*.md > data/md.map
+
+      - name: Update md.map inside repo
+        run: |
+            git add .
+            set +e  # Grep succeeds with nonzero exit codes to show results.
+            git status . | grep modified
+            if [ $? -eq 0 ]
+            then
+                set -e
+                echo "git commit and push generated md.map file."
+                git config --global user.name  "md.map"
+                git config --global user.email "noone@nowhere.github.com"
+                git commit -am "updated on - $(date)"
+                git push
+            else
+                set -e
+                echo "no changes since last run."
+            fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
