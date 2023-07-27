@@ -181,7 +181,7 @@ function ui_init(window, document) {
             loaded(req, i, ext, req.responseText);
         };
         try { 
-            req.open("GET", "page" + i + "." + ext);
+            req.open("GET", "data/page" + i + "." + ext);
             req.send();
         } catch (e) { /* ignore 404 */ }
     }
