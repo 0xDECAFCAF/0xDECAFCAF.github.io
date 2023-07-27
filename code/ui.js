@@ -214,16 +214,16 @@ function ui_init(window, document) {
                 const array = text.split('\n');
                 for (var i = array.length - 1; i >= 0; i--) {
                     console.log("[" + (i + 1) + "]: " + array[i]);
+                    let req = new XMLHttpRequest();
+                    req.onerror = function() { };
+                    req.onloadend = function() { 
+                        page_has_been_loaded(array, i, req, req.responseText);
+                    };
+                    try { 
+                        req.open("GET", array[i]);
+                        req.send();
+                    } catch (e) { /* ignore 404 */ }
                 }
-                let req = new XMLHttpRequest();
-                req.onerror = function() { };
-                req.onloadend = function() { 
-                    page_has_been_loaded(array, i, req, req.responseText);
-                };
-                try { 
-                    req.open("GET", array[i]);
-                    req.send();
-                } catch (e) { /* ignore 404 */ }
             }
         }
         ui_init(this, this.document);
