@@ -147,8 +147,8 @@ function ui_init(window, document) {
         }
         let mi = '<li class="pure-menu-item"><a href="#page' + i + 
                  '" class="pure-menu-link">' + label + '</a></li>';
-        let contact = document.getElementById("contact");
-        contact.insertAdjacentHTML('beforebegin', mi);
+        let top = document.getElementById("top");
+        top.insertAdjacentHTML('beforebegin', mi);
         let page = '<div id="page' + i + '"><div id="page' + i + 
                     '.header" class="header"></div><div id="page' + i + 
                     '.content" class="content"></div></div>';
