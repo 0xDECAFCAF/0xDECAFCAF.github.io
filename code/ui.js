@@ -154,35 +154,17 @@ function ui_init(window, document) {
         header.insertAdjacentHTML('beforeend', "<h1>" + text + "</h1>");
     }
 
-    function loaded(req, i, ext, text) {
-        if (req.readyState === XMLHttpRequest.DONE && 
-           (req.status === 0 || (req.status >= 200 && req.status < 400))) {
-            if (text === "") {
-                // nothing - done
-            } else if (ext === "txt") {
-                add_label(i, text);
-                load_page(i, "md");
-                return;
-            } else if (ext === "md") {
-                add_md(i, text);
-                load_page(i + 1, "txt");
-                return;
-            } else {
-                console.log("invalid: " + ext);
-            }
-        }
-        ui_init(this, this.document);
-    }
-
     function page_has_been_loaded(array, i, req, text) {
         if (req.readyState === XMLHttpRequest.DONE && 
             (req.status === 0 || (req.status >= 200 && req.status < 400))) {
             if (text === "") {
                 // page is empty - do nothing
             } else {
+                let first_line = text.split('\n')[0].trim();
                 let k = array.length - 1 - i;
-                console.log("[" + k + "]: " + "page " + i + " loaded");
-                add_label(k, "page" + k);
+                console.log("[" + k + "]: " + "page " + i + " loaded. First Line: " + first_line);
+                let date = array[i].split(".")[0];
+                add_label(k, date + "|" + first_line);
                 add_md(k, text);
             }
         }
@@ -208,12 +190,14 @@ function ui_init(window, document) {
     function map_has_been_loaded(req, text) {
         if (req.readyState === XMLHttpRequest.DONE && 
            (req.status === 0 || (req.status >= 200 && req.status < 400))) {
+            text = text.trim().replace(/\r/g, '');
             if (text === "") {
                 // empty map - done
             } else {
                 console.log("text: " + text);
                 const array = text.split('\n');
                 for (var i = array.length - 1; i >= 0; i--) {
+                    array[i] = array[i].trim();
                     console.log("[" + (i + 1) + "]: " + array[i]);
                 }
                 load_page(array, array.length - 1);
