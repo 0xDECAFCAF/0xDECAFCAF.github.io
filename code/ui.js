@@ -162,9 +162,9 @@ function ui_init(window, document) {
             } else {
                 let ix = text.indexOf('\n');
                 let first_line = ix < 0 ? text : text.substring(0, ix);
-                text = text.substring(ix + 1);
-                let k = array.length - 1 - i;
                 console.log("[" + k + "]: " + "page " + i + " loaded. First Line: " + first_line);
+                text = ix < 0 ? text : text.substring(ix + 1);
+                let k = array.length - 1 - i;
                 let date = array[i].split("/")[1].split(".")[0]; // "data/foo_bar.md" -> "foo_bar"
                 add_label(k, date + "|" + first_line);
                 add_md(k, text);
@@ -202,7 +202,7 @@ function ui_init(window, document) {
                     array[i] = array[i].trim();
                     console.log("[" + (i + 1) + "]: " + array[i]);
                 }
-                load_page(array, array.length - 1);
+                load_page(array, array.length - 1); // in reverse order
             }
         }
         ui_init(this, this.document);
