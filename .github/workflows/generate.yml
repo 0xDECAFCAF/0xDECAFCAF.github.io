@@ -23,7 +23,7 @@ jobs:
         run: |
             rm    data/md.map
             ls -1 data/*.md > data/md.map
-            printf -v content "%q" "`cat data/2004-03-09.md`"
+            printf -v content "%s" $(printf "%q" "`cat data/2004-03-09.md`")
             echo $content
             gh api --method POST \
                    -H "Accept: application/vnd.github+json" \
