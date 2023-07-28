@@ -30,7 +30,9 @@ jobs:
                    -H "Accept: application/vnd.github+json" \
                    -H "X-GitHub-Api-Version: 2022-11-28" \
                    /markdown -f text=$content >html/2004-03-09.html
-            git add html
+            set +e  
+            git add html/2004-03-09.html
+            set -e
         env:
             GH_TOKEN: ${{ github.token }}
 
