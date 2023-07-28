@@ -163,7 +163,7 @@ function ui_init(window, document) {
                 let first_line = text.split('\n')[0].trim();
                 let k = array.length - 1 - i;
                 console.log("[" + k + "]: " + "page " + i + " loaded. First Line: " + first_line);
-                let date = array[i].split(".")[0];
+                let date = array[i].split("/")[1].array[i].split(".")[0];
                 add_label(k, date + "|" + first_line);
                 add_md(k, text);
             }
