@@ -23,12 +23,13 @@ jobs:
         run: |
             rm    data/md.map
             ls -1 data/*.md > data/md.map
+            mkdir -p html
             printf -v content "%s" $(printf "%q" "`cat data/2004-03-09.md`")
-            echo $content
+            # echo $content
             gh api --method POST \
                    -H "Accept: application/vnd.github+json" \
                    -H "X-GitHub-Api-Version: 2022-11-28" \
-                   /markdown -f text=$content
+                   /markdown -f text=$content >html/2004-03-09.html 
         env:
             GH_TOKEN: ${{ github.token }}
 
