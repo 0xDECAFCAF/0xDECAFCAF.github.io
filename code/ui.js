@@ -160,7 +160,9 @@ function ui_init(window, document) {
             if (text === "") {
                 // page is empty - do nothing
             } else {
-                let first_line = text.split('\n')[0].trim();
+                let ix = text.indexOf('\n');
+                let first_line = ix < 0 ? text : text.substring(0, ix);
+                text = text.substring(ix + 1);
                 let k = array.length - 1 - i;
                 console.log("[" + k + "]: " + "page " + i + " loaded. First Line: " + first_line);
                 let date = array[i].split("/")[1].array[i].split(".")[0];
