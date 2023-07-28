@@ -1,1 +1,160 @@
-<p>$'Markdown\n\n<a href="https://en.wikipedia.org/wiki/Markdown" rel="nofollow">Markdown</a>wasinspiredbypre-existingconventionsformarkingupplaintextinemailandusenetposts,suchastheearliermarkuplanguagessetext(c.1992),Textile(c.2002),andreStructuredText(c.2002).\n\nIn2002AaronSwartzcreatedatxandreferredtoitasthetruestructuredtextformat.GrubercreatedtheMarkdownlanguagein2004withthegoalofenablingpeopletowriteusinganeasy-to-readandeasy-to-writeplaintextformat.\n\nHereissimplisticexampleofmarkdownstylingassupportedbyshowdown.js\n\nParagraphsareseparatedbyablankline.\n\n2ndparagraph.<em>Italic</em>,<strong>bold</strong>,and<code>monospace</code>.Itemizedlists\nlooklike:\n\nREADME.mdcodedatafavicon.icohtmlindex.htmlthisone\nREADME.mdcodedatafavicon.icohtmlindex.htmlthatone\nREADME.mdcodedatafavicon.icohtmlindex.htmltheotherone\n\nNotethat---notconsideringtheasterisk---theactualtext\ncontentstartsat4-columnsin.\n\n&gt;Blockquotesare\n&gt;writtenlikeso.\n&gt;\n&gt;Theycanspanmultipleparagraphs,\n&gt;ifyoulike.\n\nUse3dashesforanem-dash.Use2dashesforranges(ex.,"it'sall\ninchapters12--14").Threedots...willbeconvertedtoanellipsis.\nUnicodeissupported.<g-emoji class="g-emoji" alias="relaxed" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/263a.png">☺</g-emoji>\n\n<del>strikethrough</del>\n\n-[x]Thistaskisdone\n-[]Thisisstillpending\n\nAnh2header\n------------\n\nHere'sanumberedlist:\n\n1.firstitem\n2.seconditem\n3.thirditem\n\nNoteagainhowtheactualtextstartsat4columnsin(4characters\nfromtheleftside).Here'sacodesample:\n\n#Letmere-iterate...\nforiin1..10{do-something(i)}\n\nAsyouprobablyguessed,indented4spaces.Bytheway,insteadof\nindentingtheblock,youcanusedelimitedblocks,ifyoulike:\n\n~~~\ndefinefoobar(){\nprint"Welcometoflavorcountry!";\n}\n~~~\n\n(whichmakescopying&amp;pastingeasier).Youcanoptionallymarkthe\ndelimitedblockforPandoctosyntaxhighlightit:\n\nPython:\n\n~~~python\nimporttime\n#Quick,counttoten!\nforiinrange(10):\n#(butnot<em>too</em>quick)\ntime.sleep(0.5)\nprinti\n~~~\n\nJavaScript:\n\n~~~javascript\nfunctionui_init(window,document){\n}(this,this.document));\n~~~\n\n\n###Anh3header###\n\nNowanestedlist:\n\n1.First,gettheseingredients:\n\nREADME.mdcodedatafavicon.icohtmlindex.htmlcarrots\nREADME.mdcodedatafavicon.icohtmlindex.htmlcelery\nREADME.mdcodedatafavicon.icohtmlindex.htmllentils\n\n2.Boilsomewater.\n\n3.Dumpeverythinginthepotandfollow\nthisalgorithm:\n\nfindwoodenspoon\nuncoverpot\nstir\ncoverpot\nbalancewoodenspoonprecariouslyonpothandle\nwait10minutes\ngotofirststep(orshutoffburnerwhendone)\n\nDonotbumpwoodenspoonoritwillfall.\n\nNoticeagainhowtextalwayslinesupon4-spaceindents(including\nthatlastlinewhichcontinuesitem3above).\n\nHere'salinkto<a href="http://foo.bar" rel="nofollow">awebsite</a>,toa<a href="local-doc.html">local\ndoc</a>,andtoa<a href="#an-h2-header">sectionheadinginthecurrent\ndoc</a>.Here'safootnote[^1].\n\n[^1]:Footnotetextgoeshere.\n\nTablescanlooklikethis:\n\nsize|material|color\n----|------------|------------\n9|leather|brown\n10|hempcanvas|natural\n11|glass|transparent\n\nTable:Shoes,theirsizes,andwhatthey'remadeof\n\n(Theaboveisthecaptionforthetable.)Pandocalsosupports\nmulti-linetables:\n\n-------------------------------\nkeywordtext\n-------------------------------\nredSunsets,apples,and\notherredorreddish\nthings.\n\ngreenLeaves,grass,frogs\nandotherthingsit's\nnoteasybeing.\n-------------------------------\n\nAhorizontalrulefollows.\n\n***\n\nHere'sadefinitionlist:\n\napples\n:Goodformakingapplesauce.\noranges\n:Citrus!\ntomatoes\n:There'sno"e"intomatoe.\n\nAgain,textisindented4spaces.(Putablanklinebetweeneach\nterm/definitionpairtospreadthingsoutmore.)\n\nHere'sa"lineblock":\n\n|Lineone\n|Linetoo\n|Linetree\n\nandimagescanbespecifiedlikethis:\n\n<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/19fe90ce8472c641e4c8e8b5abc8a1864ed0fb1d063242b3639396da969ca36c/68747470733a2f2f307864656361666361662e6769746875622e696f2f636f64652f616e64726f69642d6368726f6d652d313932783139322e706e673d3332783332"><img src="https://camo.githubusercontent.com/19fe90ce8472c641e4c8e8b5abc8a1864ed0fb1d063242b3639396da969ca36c/68747470733a2f2f307864656361666361662e6769746875622e696f2f636f64652f616e64726f69642d6368726f6d652d313932783139322e706e673d3332783332" alt="Peace" data-canonical-src="https://0xdecafcaf.github.io/code/android-chrome-192x192.png=32x32" style="max-width: 100%;"></a>\n\nInlinemathequationsgoinlikeso:$\omega=d\phi/dt$.Display\nmathshouldgetitsownlineandbeputinindouble-dollarsigns:\n\n$$I=\int\rhoR^{2}dV$$\n\nAndnotethatyoucanbackslash-escapeanypunctuationcharacters\nwhichyouwishtobedisplayedliterally,ex.:\<code>foo\\</code>,\<em>bar\</em>,etc.'</p>
+<p>Markdown</p>
+<p><a href="https://en.wikipedia.org/wiki/Markdown" rel="nofollow">Markdown</a> was inspired by pre-existing conventions for marking up plain text in email and usenet posts, such as the earlier markup languages setext (c. 1992), Textile (c. 2002), and reStructuredText (c. 2002).</p>
+<p>In 2002 Aaron Swartz created atx and referred to it as the true structured text format. Gruber created the Markdown language in 2004 with the goal of enabling people to write using an easy-to-read and easy-to-write plain text format.</p>
+<p>Here is simplistic example of markdown styling as supported by showdown.js</p>
+<p>Paragraphs are separated by a blank line.</p>
+<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists
+look like:</p>
+<ul>
+<li>this one</li>
+<li>that one</li>
+<li>the other one</li>
+</ul>
+<p>Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.</p>
+<blockquote>
+<p>Block quotes are
+written like so.</p>
+<p>They can span multiple paragraphs,
+if you like.</p>
+</blockquote>
+<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., "it's all
+in chapters 12--14"). Three dots ... will be converted to an ellipsis.
+Unicode is supported. <g-emoji class="g-emoji" alias="relaxed" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/263a.png">☺</g-emoji></p>
+<p><del>strikethrough</del></p>
+<ul>
+<li>[x] This task is done</li>
+<li>[ ] This is still pending</li>
+</ul>
+<h2><a id="user-content-an-h2-header" class="anchor" aria-hidden="true" href="#an-h2-header"><span aria-hidden="true" class="octicon octicon-link"></span></a>An h2 header</h2>
+<p>Here's a numbered list:</p>
+<ol>
+<li>first item</li>
+<li>second item</li>
+<li>third item</li>
+</ol>
+<p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here's a code sample:</p>
+<pre><code># Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+</code></pre>
+<p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:</p>
+<pre><code>define foobar() {
+    print "Welcome to flavor country!";
+}
+</code></pre>
+<p>(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:</p>
+<p>Python:</p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> <span class="pl-s1">time</span>
+<span class="pl-c"># Quick, count to ten!</span>
+<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">10</span>):
+    <span class="pl-c"># (but not *too* quick)</span>
+    <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-c1">0.5</span>)
+    <span class="pl-k">print</span> <span class="pl-s1">i</span></pre></div>
+<p>JavaScript:</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">ui_init</span><span class="pl-kos">(</span><span class="pl-s1">window</span><span class="pl-kos">,</span> <span class="pl-s1">document</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+<span class="pl-kos">}</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">,</span> <span class="pl-smi">this</span><span class="pl-kos">.</span><span class="pl-c1">document</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<h3><a id="user-content-an-h3-header" class="anchor" aria-hidden="true" href="#an-h3-header"><span aria-hidden="true" class="octicon octicon-link"></span></a>An h3 header</h3>
+<p>Now a nested list:</p>
+<ol>
+<li>
+<p>First, get these ingredients:</p>
+<ul>
+<li>carrots</li>
+<li>celery</li>
+<li>lentils</li>
+</ul>
+</li>
+<li>
+<p>Boil some water.</p>
+</li>
+<li>
+<p>Dump everything in the pot and follow
+this algorithm:</p>
+<pre><code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously on pot handle
+wait 10 minutes
+goto first step (or shut off burner when done)
+</code></pre>
+<p>Do not bump wooden spoon or it will fall.</p>
+</li>
+</ol>
+<p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).</p>
+<p>Here's a link to <a href="http://foo.bar" rel="nofollow">a website</a>, to a <a href="local-doc.html">local
+doc</a>, and to a <a href="#an-h2-header">section heading in the current
+doc</a>. Here's a footnote <sup><a href="#fn-1" id="user-content-fnref-1" data-footnote-ref="">1</a></sup>.</p>
+<p>Tables can look like this:</p>
+<table>
+<thead>
+<tr>
+<th>size</th>
+<th>material</th>
+<th>color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>leather</td>
+<td>brown</td>
+</tr>
+<tr>
+<td>10</td>
+<td>hemp canvas</td>
+<td>natural</td>
+</tr>
+<tr>
+<td>11</td>
+<td>glass</td>
+<td>transparent</td>
+</tr>
+</tbody>
+</table>
+<p>Table: Shoes, their sizes, and what they're made of</p>
+<p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:</p>
+<hr>
+<p>keyword   text</p>
+<hr>
+<p>red       Sunsets, apples, and
+other red or reddish
+things.</p>
+<p>green     Leaves, grass, frogs
+and other things it's
+not easy being.</p>
+<hr>
+<p>A horizontal rule follows.</p>
+<hr>
+<p>Here's a definition list:</p>
+<p>apples
+: Good for making applesauce.
+oranges
+: Citrus!
+tomatoes
+: There's no "e" in tomatoe.</p>
+<p>Again, text is indented 4 spaces. (Put a blank line between each
+term/definition pair to spread things out more.)</p>
+<p>Here's a "line block":</p>
+<p>| Line one
+|   Line too
+| Line tree</p>
+<p>and images can be specified like this:</p>
+<p>![Peace](<a href="https://0xdecafcaf.github.io/code/android-chrome-192x192.png" rel="nofollow">https://0xdecafcaf.github.io/code/android-chrome-192x192.png</a> =32x32)</p>
+<p>Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:</p>
+<p>$$I = \int \rho R^{2} dV$$</p>
+<p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
+<section data-footnotes="">
+<ol>
+<li id="user-content-fn-1">
+<p>Footnote text goes here. <a href="#fnref-1" data-footnote-backref="" aria-label="Back to reference 1"><g-emoji class="g-emoji" alias="leftwards_arrow_with_hook" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/21a9.png">↩</g-emoji></a></p>
+</li>
+</ol>
+</section>
