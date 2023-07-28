@@ -163,9 +163,9 @@ function ui_init(window, document) {
                 let k = array.length - 1 - i;
                 let ix = text.indexOf('\n');
                 let first_line = ix < 0 ? text : text.substring(0, ix);
-                console.log("[" + k + "]: " + "page " + i + " loaded. First Line: " + first_line);
                 text = ix < 0 ? text : text.substring(ix + 1);
-                let date = array[i].split("/")[1].split(".")[0]; // "data/foo_bar.md" -> "foo_bar"
+                // "data/YYYY-MM-DD.md" -> "YYYY-MM-DD"
+                let date = array[i].split("/")[1].split(".")[0]; 
                 add_label(k, date + "|" + first_line);
                 add_md(k, text);
             }
@@ -196,11 +196,9 @@ function ui_init(window, document) {
             if (text === "") {
                 // empty map - done
             } else {
-                console.log("text: " + text);
                 const array = text.split('\n');
                 for (var i = array.length - 1; i >= 0; i--) {
                     array[i] = array[i].trim();
-                    console.log("[" + (i + 1) + "]: " + array[i]);
                 }
                 load_page(array, array.length - 1); // in reverse order
             }
