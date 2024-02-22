@@ -163,7 +163,8 @@ function ui_init(window, document) {
                 // "data/YYYY-MM-DD.md" -> "YYYY-MM-DD"
                 let date = array[i].split("/")[1].split(".")[0]; 
                 add_label(k, date + "|" + first_line);
-                add_md(k, text);
+                let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
+                add_md(k, body);
             }
         }
         if (i > 0) {
