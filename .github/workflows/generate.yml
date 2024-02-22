@@ -40,7 +40,7 @@ jobs:
       - name: generate md.map
         run: |
             mkdir -p html
-            echo "https://docs.github.com/en/get-started/writing-on-github" >html/2004-03-09.html
+            echo -e "\n" >html/2004-03-09.html
             set +e  
             git add html/2004-03-09.html
             set -e
