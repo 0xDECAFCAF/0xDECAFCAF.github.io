@@ -21,6 +21,19 @@ jobs:
           GIT_TRACE: 0
           GIT_CURL_VERBOSE: 0
           
+      - name: Convert Markdown to HTML
+        run: |
+          mkdir -p html
+          for file in data/**/*.md; do
+            html_file="html/${file%.md}.html"
+            markdown=$(cat "$file")
+            payload=$(jq -n --arg text "$markdown" --arg context "username/repo" '{text: $text, mode: "gfm", context: $context}')
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                 -H "Content-Type: application/json" \
+                 -d "$payload" \
+                 https://api.github.com/markdown > "$html_file"
+          done
+      
       - name: generate md.map
         run: |
             echo step 1
