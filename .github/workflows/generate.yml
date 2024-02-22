@@ -9,11 +9,11 @@ permissions:
   contents: write
 
 jobs:
-  graph:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout.
+      - name: checkout.
         uses: actions/checkout@v3
         with:
           fetch-depth: 0        
@@ -21,7 +21,12 @@ jobs:
           GIT_TRACE: 0
           GIT_CURL_VERBOSE: 0
           
-      - name: Convert Markdown to HTML
+      - name: install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+          
+      - name: convert markdown to html
         run: |
           mkdir -p html
           for file in data/*.md; do
