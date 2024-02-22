@@ -21,6 +21,7 @@ jobs:
 
       - name: generate md.map
         run: |
+            ls -lR
             ls -1 data/*.md > data/md.map
             mkdir -p html
             gh api --method POST \
