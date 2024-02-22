@@ -32,7 +32,9 @@ jobs:
           for file in data/*.md; do
             filename=$(basename "$file" .md)
             html_file="html/${filename}.html"
-            pandoc "$file" --mathjax -s -o "$html_file"
+            pandoc "$file" --mathjax -s \
+              --mathjax="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" \
+              -o "$html_file"
           done
       
       - name: generate md.map
