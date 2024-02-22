@@ -23,17 +23,28 @@ jobs:
           
       - name: generate md.map
         run: |
+            echo step 1
+            ls -lR
+            echo step 2
             rm data/md.map
+            echo step 3
             ls -1 data/*.md > data/md.map
+            echo step 4
             mkdir -p html
+            echo step 5
             gh api --method POST \
                    -H "Accept: application/vnd.github+json" \
                    -H "X-GitHub-Api-Version: 2022-11-28" \
                    /markdown -f mode=gfm text="$(<data/2004-03-09.md)" >html/2004-03-09.html
+            echo step 6
             set +e  
+            echo step 7
             git add html/2004-03-09.html
+            echo step 8
             set -e
+            echo step 9
             git status
+            echo done
         env:
             GH_TOKEN: ${{ github.token }}
 
