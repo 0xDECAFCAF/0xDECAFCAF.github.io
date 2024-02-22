@@ -163,14 +163,14 @@ function ui_init(window, document) {
                 // "data/YYYY-MM-DD.md" -> "YYYY-MM-DD"
                 let date = array[i].split("/")[1].split(".")[0]; 
                 add_label(k, date + "|" + first_line);
-                let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
-                add_md(k, body);
                 let styleContent = html.match(/<style[^>]*>([\s\S]*)<\/style>/i);
                 if (styleContent && styleContent[1]) {
                     let styleElement = document.createElement('style');
                     styleElement.textContent = styleContent[1];
                     document.head.appendChild(styleElement);
                 }
+                let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
+                add_html(k, body);
             }
         }
         if (i > 0) {
