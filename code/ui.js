@@ -126,8 +126,8 @@ function ui_init(window, document) {
 
 (function (window, document) {
 
-    function add_md(i, text) {
-        document.getElementById("page" + i + ".content").insertAdjacentHTML('beforeend', text);
+    function add_html(i, body) {
+        document.getElementById("page" + i + ".content").insertAdjacentHTML('beforeend', body);
     }
 
     function add_label(i, text) {
@@ -165,6 +165,12 @@ function ui_init(window, document) {
                 add_label(k, date + "|" + first_line);
                 let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
                 add_md(k, body);
+                let styleContent = html.match(/<style[^>]*>([\s\S]*)<\/style>/i);
+                if (styleContent && styleContent[1]) {
+                    let styleElement = document.createElement('style');
+                    styleElement.textContent = styleContent[1];
+                    document.head.appendChild(styleElement);
+                }
             }
         }
         if (i > 0) {
