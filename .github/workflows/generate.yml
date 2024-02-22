@@ -27,12 +27,7 @@ jobs:
           for file in data/*.md; do
             filename=$(basename "$file" .md)
             html_file="html/${filename}.html"
-            markdown=$(cat "$file")
-            payload=$(jq -n --arg text "$markdown" --arg context "username/repo" '{text: $text, mode: "gfm", context: $context}')
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: application/json" \
-                 -d "$payload" \
-                 https://api.github.com/markdown > "$html_file"
+            pandoc "$file" --mathjax -s -o "$html_file"
           done
       
       - name: generate md.map
