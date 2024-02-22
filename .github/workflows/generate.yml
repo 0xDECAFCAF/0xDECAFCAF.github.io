@@ -24,7 +24,7 @@ jobs:
       - name: Convert Markdown to HTML
         run: |
           mkdir -p html
-          for file in data/**/*.md; do
+          for file in data/*.md; do
             html_file="html/${file%.md}.html"
             markdown=$(cat "$file")
             payload=$(jq -n --arg text "$markdown" --arg context "username/repo" '{text: $text, mode: "gfm", context: $context}')
