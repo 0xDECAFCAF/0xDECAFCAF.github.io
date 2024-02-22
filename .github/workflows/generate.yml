@@ -25,7 +25,8 @@ jobs:
         run: |
           mkdir -p html
           for file in data/*.md; do
-            html_file="html/${file%.md}.html"
+            filename=$(basename "$file" .md)
+            html_file="html/${filename}.html"
             markdown=$(cat "$file")
             payload=$(jq -n --arg text "$markdown" --arg context "username/repo" '{text: $text, mode: "gfm", context: $context}')
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
