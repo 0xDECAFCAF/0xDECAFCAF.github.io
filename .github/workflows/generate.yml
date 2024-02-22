@@ -15,9 +15,27 @@ jobs:
     steps:
       - name: Checkout.
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0        
         env:
           GIT_TRACE: 0
           GIT_CURL_VERBOSE: 0
+          
+      - name: generate md.map
+        run: |
+            rm    data/md.map
+            ls -1 data/*.md > data/md.map
+            mkdir -p html
+            gh api --method POST \
+                   -H "Accept: application/vnd.github+json" \
+                   -H "X-GitHub-Api-Version: 2022-11-28" \
+                   /markdown -f mode=gfm text="$(<data/2004-03-09.md)" >html/2004-03-09.html
+            set +e  
+            git add html/2004-03-09.html
+            set -e
+            git status
+        env:
+            GH_TOKEN: ${{ github.token }}
 
       - name: Update md.map inside repo
         run: |
