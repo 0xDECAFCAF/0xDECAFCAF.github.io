@@ -117,8 +117,8 @@ function ui_init(window, document) {
     
     window.scrollTo(0,1);
     layout.scrollIntoView(true);
-    hljs_force_cpp();
-    hljs.initHighlighting();
+//  hljs_force_cpp();
+//  hljs.initHighlighting();
     add_menu_items_click_listeners();
     click_here_animation();
 
@@ -169,8 +169,8 @@ function ui_init(window, document) {
                     style_element.textContent = style[1];
                     document.head.appendChild(style_element);
                 }
-                let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
-                add_html(k, body);
+                let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+                if (body && body[1]) { add_html(k, body[1]); }
             }
         }
         if (i > 0) {
