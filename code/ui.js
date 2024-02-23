@@ -169,6 +169,12 @@ function ui_init(window, document) {
                     style_element.textContent = style[1];
                     document.head.appendChild(style_element);
                 }
+                let script = text.match(/<script[^>]*>([\s\S]*)<\/script>/i);
+                if (script && script[1]) {
+                    let script_element = document.createElement('script');
+                    script_element.textContent = script[1];
+                    document.head.appendChild(script_element);
+                }
                 let body = text.match(/<body[^>]*>([\s\S]*)<\/body>/i);
                 if (body && body[1]) { add_html(k, body[1]); }
             }
